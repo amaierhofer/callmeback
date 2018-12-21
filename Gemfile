@@ -4,6 +4,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'coffee-rails', '~> 4.2'
+gem 'dry_crud'
 gem 'font-awesome-rails'
 gem 'haml'
 gem 'jquery-rails'
@@ -19,7 +20,6 @@ gem 'validates_by_schema'
 
 group :development, :test do
   gem 'capybara'
-  gem 'dry_crud'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
