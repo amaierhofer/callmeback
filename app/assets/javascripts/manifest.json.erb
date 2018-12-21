@@ -1,13 +1,13 @@
-<% icon_sizes = Rails.configuration.serviceworker.icon_sizes %>
+<% icon_sizes = [48, 72, 96, 144, 192, 512] %>
 {
   "name": "CallMeBack",
   "short_name": "CMB",
   "start_url": "/",
   "icons": [
-  <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
+  <% icon_sizes.map { |s| "#{s}-#{s}" }.each.with_index do |dim, i| %>
     {
-      "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
-      "sizes": "<%= dim %>",
+      "src": "<%= image_path "android-launchericon-#{dim}.png" %>",
+      "sizes": "<%= dim.gsub('-', 'x') %>",
       "type": "image/png"
     }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
   <% end %>
