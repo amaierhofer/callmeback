@@ -1,3 +1,7 @@
-= link_to 'CallMeBack', root_path, class: 'navbar-brand'
-%ul.navbar-nav
-  %li.nav-item= link_to 'Profile', root_path, class: 'nav-link'
+%button.navbar-toggler.hidden-sm-up{data: { target:  '#navbarResponsive', toggle: :collapse}}
+  %span.navbar-toggler-icon
+
+#navbarResponsive.collapse.navbar-collapse
+  = link_to(root_path, id: 'nav-link', class: 'navbar-brand') do
+    CallMeBack
+  %ul.navbar-nav.mr-auto
