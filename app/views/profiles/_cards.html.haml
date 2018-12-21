@@ -1,0 +1,14 @@
+- if client.endpoint
+  .card
+    .card-body
+      %h5.card-title.strong Got token
+      %p.card-text You are now registered with the push service.
+      %button.btn.btn-outline-success{data: { test: true }} Send push
+      %button.btn.btn-outline-danger{data: { deregister: true }} Unsubscribe
+
+- else
+  .card
+    .card-body
+      %h5.card-title.strong No Token
+      %p.card-text We need a token to send you push messages
+      %button.btn.btn-outline-success{data: { register: true }} Obtain Token

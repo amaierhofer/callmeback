@@ -60,10 +60,22 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
+Capybara.register_driver :with_push do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: {
+      args: %w[],
+      prefs: { "profile.default_content_setting_values.notifications" => 1 }
+    }, loggingPrefs: { browser: 'ALL' },
+  )
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+end
+
+# https://www.linkedin.com/pulse/how-handle-browser-level-notification-using-selenium-webdriver-maske
 Capybara.register_driver :headless do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[--headless --disable-gpu] },
-    loggingPrefs: { browser: 'ALL' }
+    chromeOptions: { args: %w[--disable-gpu --headless] },
+    loggingPrefs: { browser: 'ALL' },
   )
 
   Capybara::Selenium::Driver.new(app,
