@@ -7,5 +7,6 @@ describe 'Profiles' do
     expect(page).to have_content 'Welcome'
     logs = page.driver.browser.manage.logs.get(:browser)
     expect(logs.first.message).to match(/Application initialized/)
+    expect(logs.second.message).to match(/Service worker registered!/)
   end
 end

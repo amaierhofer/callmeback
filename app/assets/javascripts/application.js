@@ -18,3 +18,4 @@
 //= require_tree .
 
 console.log('Application initialized');
+//= require serviceworker-companion
