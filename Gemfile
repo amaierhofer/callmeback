@@ -17,6 +17,7 @@ gem 'serviceworker-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'validates_by_schema'
+gem 'webpush'
 
 group :development, :test do
   gem 'capybara'
