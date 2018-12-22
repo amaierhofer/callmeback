@@ -5,10 +5,17 @@ $.ajaxSetup({
 });
 
 window.initialize = function(reg) {
+  function onTest(e)  {
+    $.ajax({
+      url: '/push_messages',
+      method: 'POST',
+      dataType: 'script',
+    });
+  }
 
   function onDeregister(e)  {
     $.ajax({
-      url: '/endpoint',
+      url: '/push_subscriptions',
       method: 'DELETE',
       dataType: 'script',
     });
@@ -37,4 +44,5 @@ window.initialize = function(reg) {
   }
   $('body').on('click', '[data-register]', onRegister)
   $('body').on('click', '[data-deregister]', onDeregister)
+  $('body').on('click', '[data-test]', onTest)
 }

@@ -59,6 +59,35 @@ function onFetch(event) {
   );
 }
 
+function onNotificationClose(event) {
+  console.log('Closed notification');
+}
+
+function onNotificationClick(event) {
+  console.log('Clicked notification');
+}
+function onPush(event) {
+  let body;
+
+  if (event.data) {
+    body = event.data.text();
+  } else {
+    body = 'Default body';
+  }
+
+  const options = {
+    body: body,
+    vibrate: [100, 50, 100],
+  };
+
+  console.log('Push message recieved');
+
+  event.waitUntil(
+    self.registration.showNotification('Push Notification', options)
+  );
+}
+
 self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
+self.addEventListener('push', onPush);
