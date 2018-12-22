@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - bin/*
     - config/**/*
+    - db/schema.rb
     - spec/spec_helper.rb
     - spec/rails_helper.rb
 
@@ -10,6 +11,10 @@ Style/Documentation:
 
 Metrics/LineLength:
   Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
 
 
 
