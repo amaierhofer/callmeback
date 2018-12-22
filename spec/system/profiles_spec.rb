@@ -8,7 +8,7 @@ describe 'Profiles' do
       visit root_path
     end.to change { Client.count }.by(1)
     cookie = page.driver.browser.manage.cookie_named('auth_token')
-    expect(cookie['value']).to eq Client.last.auth_token
+    expect(cookie[:value]).to eq Client.last.auth_token
   end
 
   it 'obtains a push token from service worker' do
@@ -17,7 +17,7 @@ describe 'Profiles' do
 
     click_button 'Obtain Token'
     expect(page).to have_content 'Got token'
-    expect(Client.last.endpoint).to be_present
+    expect(Client.last.push_subscription).to be_present
   end
 
   after do

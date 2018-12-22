@@ -23,13 +23,12 @@ window.initialize = function(reg) {
 
     if (status === 'granted') {
       let subscription = await reg.pushManager.subscribe({ userVisibleOnly: true });
-      console.log(subscription.endpoint);
       $.ajax({
-        url: '/endpoint',
+        url: '/push_subscriptions',
         method: 'POST',
         dataType: 'script',
         data: {
-          endpoint: subscription.endpoint,
+          push_subscription: JSON.parse(JSON.stringify(subscription)),
         }
       });
     } else {

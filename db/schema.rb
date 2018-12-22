@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_184127) do
+ActiveRecord::Schema.define(version: 2018_12_22_162934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 2018_12_21_184127) do
   create_table "clients", force: :cascade do |t|
     t.string "auth_token", null: false
     t.string "user_agent", null: false
-    t.string "endpoint"
+    t.json "push_subscription"
+    t.integer "push_count", default: 0
     t.index ["auth_token"], name: "index_clients_on_auth_token"
   end
 
