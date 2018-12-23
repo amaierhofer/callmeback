@@ -3,13 +3,12 @@
 %html
   %head
     %meta{:charset => 'utf-8'}
-    %title
-      = strip_tags(@title)
-      \- CallmeBack
+    %title= [strip_tags(@title), 'CallMeBack'].compact.join(' - ')
 
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     %meta{name: 'theme-color', content: '#FFFFFF'}
     %link{rel: 'manifest', href: '/manifest.json' }
+    %link{rel: 'shortcut icon', href: '/favicon.ico' }
     = csrf_meta_tag
 
     = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
