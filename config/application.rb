@@ -29,5 +29,9 @@ module Callmeback
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.after_initialize do
+      SubscriptionMonitorJob.perform_later unless Delayed::Job.exists?
+    end
+
   end
 end

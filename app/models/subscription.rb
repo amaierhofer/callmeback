@@ -8,10 +8,17 @@ class Subscription < ApplicationRecord
 
   scope :list, -> { order(:url) }
 
+  def get
+    Net::HTTP.get(URI.parse(url))
+  rescue => e
+    Rails.logger.error e
+    nil
+  end
+
   private
 
   def set_missing_scheme
-    self.url = "http://#{url}" unless url[%r{:/}]
+    self.url = "https://#{url}" unless url[%r{:/}]
   end
 
   def assert_url
