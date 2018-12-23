@@ -13,6 +13,27 @@ window.initialize = function(reg) {
     });
   }
 
+  function onSubscriptionAdd(e)  {
+    $('[data-subscription-add]').hide()
+    $('[data-subscription-form]').removeClass('d-none')
+    $('[data-subscription-form] :input:last').focus()
+  }
+
+  function onSubscriptionSubmit(e)  {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $.ajax({
+      url: '/subscriptions',
+      method: 'POST',
+      dataType: 'script',
+      data: {
+        subscription: { url: $('#subscription_url').val() }
+      }
+    })
+  }
+
+
   function onDeregister(e)  {
     $.ajax({
       url: '/push_subscriptions',
@@ -45,4 +66,6 @@ window.initialize = function(reg) {
   $('body').on('click', '[data-register]', onRegister)
   $('body').on('click', '[data-deregister]', onDeregister)
   $('body').on('click', '[data-test]', onTest)
+  $('body').on('click', '[data-subscription-add]', onSubscriptionAdd)
+  $('body').on('submit', '[data-subscription-form]', onSubscriptionSubmit)
 }

@@ -6,6 +6,24 @@
       %button.btn.btn-outline-success{data: { test: true }} Send push
       %button.btn.btn-outline-danger{data: { deregister: true }} Unsubscribe
 
+
+  .card.mt-3
+    .card-body
+      %h5.card-title.strong Manage Subscriptions
+      %p.card-text Subscriptions are URLs that are pulled periodically. If the Document at URL has changed a push notification will be sent.
+
+      = plain_table_or_message(client.subscriptions.list) do |t|
+        - t.attr(:url)
+        - t.attr(:updated_at)
+        - t.action_col do |subscription|
+          = link_to(subscription_path(id: subscription.id, format: :js), method: :delete, remote: true) do
+            %span &times;
+
+      %button.btn.btn-outline-success{data: { subscription_add: true }} Add
+
+      %div.mt-3.d-none{data: { subscription_form: true }}
+        = standard_form client.subscriptions.build, :url
+
 - else
   .card
     .card-body

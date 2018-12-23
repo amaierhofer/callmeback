@@ -24,10 +24,15 @@ describe 'Profiles' do
     expect(Client.last.push_subscription).not_to be_present
   end
 
-  it 'obtains a push token and sends push' do
+  it 'with a token, we may add subscriptions and send test push' do
     visit root_path
     click_button 'Obtain Token'
     click_button 'Send push'
+    expect(page).to have_content 'Subscriptions'
+    click_button 'Add'
+    fill_in 'Url', with: 'github.com'
+    click_button 'Save'
+    expect(page).to have_content 'http://github.com'
   end
 
   after do

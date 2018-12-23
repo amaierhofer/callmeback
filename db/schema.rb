@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_162934) do
+ActiveRecord::Schema.define(version: 2018_12_23_162200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,16 @@ ActiveRecord::Schema.define(version: 2018_12_22_162934) do
     t.string "user_agent", null: false
     t.json "push_subscription"
     t.integer "push_count", default: 0
+    t.integer "subscriptions_count", default: 0
     t.index ["auth_token"], name: "index_clients_on_auth_token"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.string "url", null: false
+    t.string "digest"
+    t.datetime "updated_at"
+    t.index ["client_id"], name: "index_subscriptions_on_client_id"
   end
 
 end
