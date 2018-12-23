@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   private
 
   def client
-    @client ||= Client.current(cookies[:auth_token], request.user_agent) do |auth_token|
-      cookies[:auth_token] = auth_token
+    @client ||= Client.current(cookies.permanent[:auth_token], request.user_agent) do |auth_token|
+      cookies.permanent[:auth_token] = auth_token
     end
   end
 end
