@@ -50,7 +50,10 @@ window.initialize = function(reg) {
     console.log('permissionStatus ' + status)
 
     if (status === 'granted') {
-      let subscription = await reg.pushManager.subscribe({ userVisibleOnly: true });
+      let subscription = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: new Uint8Array(<%= Base64.urlsafe_decode64(Rails.application.credentials.vapid_public_key).bytes %>)
+      });
       $.ajax({
         url: '/push_subscriptions',
         method: 'POST',
